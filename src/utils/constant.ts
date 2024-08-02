@@ -3,4 +3,5 @@ export const Constant = {
     ADMIN_ROLE: 'ADMIN',
     USER_ROLE: 'USER',
   },
+  BY_PASS_URLS: ['/auth/login', '/user/signUp'],
 };

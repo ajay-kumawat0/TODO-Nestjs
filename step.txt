@@ -1,0 +1,46 @@
+***********************************USERS****************************************
+
+1) nestjs/cli => basic structure
+2) Connect database package required <@nestjs/typeorm, pg, typeorm>
+3) Generate config file (.env) => package required <@nestjs/config>
+4) nest g res user && nest g res todo
+5) create entity than bind with app.module file with <"entities: [User]">, after in same file module < imports: [TypeOrmModule.forFeature([User])] >
+6) write required field for USER, which comes frontend in DTO file
+7) validation package required: class-validator => for validation && class-transformer => convert object to class.... add validation in dto like @IsString and according to fields, after that in <controller> import a validationPipe from @nestjs/comman and use in create user <body> after that in userService write < constructor(@InjectRepository(User) private userRepository: Repository<User>,) {} >
+8) Create a user, findAll users and delete user
+9) findUserByEmail route
+
+***********************************TODO********************************************
+// API ENDPOINT
+1) ACTIVE TODO
+    a) Create TODO based on <UserId>
+    b) List Of imcompleted TODOS
+    c) Marked as completed based on <TODO ID>
+    d) Delete TODO based on <TODO ID>
+2) COMPLETED TODO 
+    a) Get All Completed TODOS <UserId>
+
+
+1) Create entities bind with todoModue < imports: [TypeOrmModule.forFeature([Todo])] >
+2) Make relation with User to Todo : OneToMany and ManyToOne
+3) write required field for TODO, which comes frontend in DTO file
+4) make createTodo, update, delete, findCompletedTodo, findInCOmpletedTodo
+
+*************************************Authentication**************************************
+1) Make a auth folder and inside it create auth.module file.
+2) Make a class and extends with PassportStrategy method and localStrategyMethod inside PassportStrategy
+3) make constructor with super keyword and add usernameField and passwordField.
+4) make a validation method and pass email and password whivh come from request
+5) in authModule import userModule bcz we want to use userService out of user resource
+6) localstrategy file in constructor mention userService so we use to find user and their data
+7) build logic in validation method according to their user validation requirment.
+8) in authModule mention localstrategy in provider  
+9) Make a authController and here import UseGuards and mention authGuard it automatically check strategy availble than perform according to mention work
+
+**********************************Generate Token**************************************
+1) install @nestjs/jwt package
+2) in authmodule import jwtModule and registerAsync
+3) login authention in authController only token generate not verified
+4) make a jwt.strategy in strategy folder and validate the information 
+5) mention jwtStrategy in authModule in provider section
+6) make a guard folder and inside mention jwt.guard file and bypass those request which we can't validate under guard
